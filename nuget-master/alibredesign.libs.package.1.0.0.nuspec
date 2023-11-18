@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>alibredesign.libs.package</id>
+    <version>1.0.0</version>
+    <authors>Stephen S. Mitchell</authors>
+    <owners></owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Alibre Design 27.0.0.27038</description>
+    <dependencies>
+      <group targetFramework=".NETFramework4.8.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="libraries\net48\alibre-api.dll" target="lib\net48\alibre-api.dll" />
+    <file src="libraries\net48\AlibreAddOn.dll" target="lib\net48\AlibreAddOn.dll" />
+    <file src="libraries\net48\AlibreX.dll" target="lib\net48\AlibreX.dll" />
+    <file src="libraries\net481\alibre-api.dll" target="lib\net481\alibre-api.dll" />
+    <file src="libraries\net481\AlibreAddOn.dll" target="lib\net481\AlibreAddOn.dll" />
+    <file src="libraries\net481\AlibreX.dll" target="lib\net481\AlibreX.dll" />
+  </files>
+</package>

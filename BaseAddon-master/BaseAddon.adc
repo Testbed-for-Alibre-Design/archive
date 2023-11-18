@@ -1,0 +1,11 @@
+﻿<AlibreDesignAddOn specificationVersion="2" friendlyName="BaseAddon">
+<Author name="Stephen S. Mitchell" link="https://github.com/Testbed-for-Alibre-Design/BaseAddon"/>
+   <Copyright>Copyright (c) 2023</Copyright>
+   <DLL type="Managed" loadedWhen="Startup" location="BaseAddon.dll"/>
+   <Icon location="logo.ico"/> 
+   <Menu text="BaseAddon"/>
+   <Description>BaseAddon</Description> 
+   <Workspace type="Always"/>
+   <Property name="Identifier" value="{2ed6a9a3-7ca2-4e08-adc9-247681b56041}"/>
+</AlibreDesignAddOn>
+
