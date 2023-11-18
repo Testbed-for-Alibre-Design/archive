@@ -1,2 +1,2 @@
 # archive
-Old repositories and content, useful for reference purposes.
+Old repositories and content.
