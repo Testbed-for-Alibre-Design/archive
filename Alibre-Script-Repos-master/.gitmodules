@@ -1,0 +1,24 @@
+[submodule "AlibreScript.Reflected"]
+	path = AlibreScript.Reflected
+	url = https://github.com/Testbed-for-Alibre-Design/AlibreScript.Reflected.git
+[submodule "AlibreScript-Code-Assistant"]
+	path = AlibreScript-Code-Assistant
+	url = https://github.com/Testbed-for-Alibre-Design/AlibreScript-Code-Assistant.git
+[submodule "AlibreScriptAPIVSCodeDemo"]
+	path = AlibreScriptAPIVSCodeDemo
+	url = https://github.com/Testbed-for-Alibre-Design/AlibreScriptAPIVSCodeDemo.git
+[submodule "alibre.script.api.text"]
+	path = alibre.script.api.text
+	url = https://github.com/Testbed-for-Alibre-Design/alibre.script.api.text.git
+[submodule "alibre-script-examples"]
+	path = alibre-script-examples
+	url = https://github.com/Testbed-for-Alibre-Design/alibre-script-examples.git
+[submodule "AlibreScriptStubMockGeneratedFiles"]
+	path = AlibreScriptStubMockGeneratedFiles
+	url = https://github.com/Testbed-for-Alibre-Design/AlibreScriptStubMockGeneratedFiles.git
+[submodule "alibre-script-library-examples"]
+	path = alibre-script-library-examples
+	url = https://github.com/Testbed-for-Alibre-Design/alibre-script-library-examples.git
+[submodule "alibre-script-api-version-diff"]
+	path = alibre-script-api-version-diff
+	url = https://github.com/Testbed-for-Alibre-Design/alibre-script-api-version-diff.git
