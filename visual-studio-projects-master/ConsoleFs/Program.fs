@@ -1,8 +1,6 @@
 ﻿open System
 open System.Runtime.InteropServices
 open AlibreX
-
-
 let mutable hook : IAutomationHook = null
 try
     let activeObject = Marshal.GetActiveObject("AlibreX.AutomationHook")

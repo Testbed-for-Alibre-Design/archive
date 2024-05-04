@@ -2,9 +2,7 @@ using Godot;
 using ImGuiNET;
 using System;
 using CursorShape = Godot.DisplayServer.CursorShape;
-
 namespace ImGuiGodot.Internal;
-
 internal sealed class Input
 {
     internal SubViewport CurrentSubViewport { get; set; }
@@ -15,7 +13,6 @@ internal sealed class Input
 #if GODOT_WINDOWS
     private readonly bool _isGodot40 = false;
 #endif
-
     public Input(Window mainWindow)
     {
         _mainWindow = mainWindow;
@@ -27,11 +24,9 @@ internal sealed class Input
         }
 #endif
     }
-
     public void Update(ImGuiIOPtr io)
     {
         var mousePos = DisplayServer.MouseGetPosition();
-
         if (io.ConfigFlags.HasFlag(ImGuiConfigFlags.ViewportsEnable))
         {
             if (io.WantSetMousePos)
@@ -55,14 +50,12 @@ internal sealed class Input
                 io.AddMousePosEvent(mousePos.X - winPos.X, mousePos.Y - winPos.Y);
             }
         }
-
         // scrolling works better if we allow no more than one event per frame
         if (_mouseWheel != Vector2.Zero)
         {
             io.AddMouseWheelEvent(_mouseWheel.X, _mouseWheel.Y);
             _mouseWheel = Vector2.Zero;
         }
-
         if (io.WantCaptureMouse && !io.ConfigFlags.HasFlag(ImGuiConfigFlags.NoMouseCursorChange))
         {
             var newCursor = ImGui.GetMouseCursor();
@@ -76,19 +69,15 @@ internal sealed class Input
         {
             _currentCursor = ImGuiMouseCursor.None;
         }
-
         CurrentSubViewport = null;
     }
-
     public bool ProcessInput(InputEvent evt, Window window)
     {
         var io = ImGui.GetIO();
         bool viewportsEnable = io.ConfigFlags.HasFlag(ImGuiConfigFlags.ViewportsEnable);
-
         var windowPos = Vector2I.Zero;
         if (viewportsEnable)
             windowPos = window.Position;
-
         if (CurrentSubViewport != null)
         {
             var vpEvent = evt.Duplicate() as InputEvent;
@@ -106,9 +95,7 @@ internal sealed class Input
 #pragma warning restore CS0618
             }
         }
-
         bool consumed = false;
-
         if (evt is InputEventMouseMotion mm)
         {
             consumed = io.WantCaptureMouse;
@@ -160,7 +147,6 @@ internal sealed class Input
             if (igk != ImGuiKey.None)
             {
                 io.AddKeyEvent(igk, k.Pressed);
-
                 if (k.Pressed && k.Unicode != 0 && io.WantTextInput)
                 {
                     io.AddInputCharacter((uint)k.Unicode);
@@ -217,10 +203,8 @@ internal sealed class Input
                 consumed = true;
             }
         }
-
         return consumed;
     }
-
     public static void ProcessNotification(long what)
     {
         switch (what)
@@ -233,7 +217,6 @@ internal sealed class Input
                 break;
         };
     }
-
     private static void UpdateKeyMods(ImGuiIOPtr io)
     {
         io.AddKeyEvent(ImGuiKey.ModCtrl, Godot.Input.IsKeyPressed(Key.Ctrl));
@@ -241,7 +224,6 @@ internal sealed class Input
         io.AddKeyEvent(ImGuiKey.ModAlt, Godot.Input.IsKeyPressed(Key.Alt));
         io.AddKeyEvent(ImGuiKey.ModSuper, Godot.Input.IsKeyPressed(Key.Meta));
     }
-
     private static CursorShape ConvertCursorShape(ImGuiMouseCursor cur) => cur switch
     {
         ImGuiMouseCursor.Arrow => CursorShape.Arrow,
@@ -255,7 +237,6 @@ internal sealed class Input
         ImGuiMouseCursor.NotAllowed => CursorShape.Forbidden,
         _ => CursorShape.Arrow,
     };
-
     public static ImGuiKey ConvertJoyButton(JoyButton btn) => btn switch
     {
         JoyButton.Start => ImGuiKey.GamepadStart,
@@ -274,7 +255,6 @@ internal sealed class Input
         JoyButton.RightStick => ImGuiKey.GamepadR3,
         _ => ImGuiKey.None
     };
-
     public static ImGuiKey ConvertKey(Key k) => k switch
     {
         Key.Tab => ImGuiKey.Tab,

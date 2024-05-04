@@ -1,5 +1,4 @@
 ﻿#If _MyType <> "Empty" Then
-
 Namespace My
     ''' <summary>
     ''' Module used to define the properties that are available in the My Namespace for WPF
@@ -48,7 +47,6 @@ Namespace My
                 Return s_Log.GetInstance()
             End Get
         End Property
-
         ''' <summary>
         ''' Returns the collection of Windows defined in the project.
         ''' </summary>

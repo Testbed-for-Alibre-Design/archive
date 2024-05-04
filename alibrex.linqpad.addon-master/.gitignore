@@ -4,28 +4,21 @@ project.lock.json
 .DS_Store
 *.pyc
 nupkg/
-
 # Visual Studio Code
 .vscode/
-
 # Rider
 .idea/
-
 # Visual Studio
 .vs/
-
 # Fleet
 .fleet/
-
 # Code Rush
 .cr/
-
 # User-specific files
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
-
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

@@ -8,7 +8,6 @@
   <Namespace>System.Windows.Forms</Namespace>
   <Namespace>System.Runtime.InteropServices</Namespace>
 </Query>
-
 public IADSession Session;
 public IADDesignSession objADDesignSession;
 public IADDesignPlane objADDesignPlane;
@@ -40,14 +39,11 @@ public IADExtrusionFeature extrusion;
 public double Dimension;
 public IAutomationHook Hook;
 public IADRoot Root;
-
 public double ID;
 public double OD;
-
 public void Main()
 {
 	Connection1();
-
 	Root.Sessions.Count.Dump();
 	Root.Sessions.Item(0).Name.Dump("name");
 	if (Root.Sessions.Count != 0)
@@ -66,11 +62,9 @@ public void Main()
 	{
 		//var out = "0".Dump();
 	}
-
 	Hook = null;
 	Root = null;
 }
-
 public void Connection1()
 {
 	IAutomationHook hook;
@@ -85,10 +79,7 @@ public void Connection1()
 	{
 		Console.WriteLine("Failed to connect to Alibre.");
 	}
-
-
 }
-
 //public static IAutomationHook hook;
 //public static IADRoot root;
 //

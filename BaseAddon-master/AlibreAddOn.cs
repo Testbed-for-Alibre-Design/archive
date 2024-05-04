@@ -1,7 +1,6 @@
 ﻿using AlibreAddOn;
 using AlibreX;
 using System;
-
 namespace AlibreAddOnBase
 {
     public static class AlibreAddOn

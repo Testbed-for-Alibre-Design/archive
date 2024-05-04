@@ -1,5 +1,4 @@
-﻿
-namespace LibraryFs
+﻿namespace LibraryFs
 open System
 open System.Runtime.InteropServices
 open AlibreX
@@ -23,5 +22,3 @@ module CodeTest =
         root <- null
     with
     | _ -> Console.WriteLine("Failed to connect to Alibre.")
-
-

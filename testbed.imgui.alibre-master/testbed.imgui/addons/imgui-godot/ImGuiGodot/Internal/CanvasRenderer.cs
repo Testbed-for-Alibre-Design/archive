@@ -3,9 +3,7 @@ using ImGuiNET;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-
 namespace ImGuiGodot.Internal;
-
 internal sealed class CanvasRenderer : IRenderer
 {
     private sealed class ViewportData
@@ -13,32 +11,26 @@ internal sealed class CanvasRenderer : IRenderer
         public Rid Canvas { set; get; }
         public Rid RootCanvasItem { set; get; }
     }
-
     private readonly Dictionary<Rid, List<Rid>> _canvasItemPools = new();
     private readonly Dictionary<Rid, ViewportData> _vpData = new();
-
     public string Name => "imgui_impl_godot4_canvas";
-
     public void Init(ImGuiIOPtr io)
     {
         io.BackendFlags |= ImGuiBackendFlags.RendererHasVtxOffset;
         io.BackendFlags |= ImGuiBackendFlags.RendererHasViewports;
     }
-
     public void InitViewport(Rid vprid)
     {
         Rid canvas = RenderingServer.CanvasCreate();
         Rid canvasItem = RenderingServer.CanvasItemCreate();
         RenderingServer.ViewportAttachCanvas(vprid, canvas);
         RenderingServer.CanvasItemSetParent(canvasItem, canvas);
-
         _vpData[vprid] = new ViewportData()
         {
             Canvas = canvas,
             RootCanvasItem = canvasItem,
         };
     }
-
     public void RenderDrawData()
     {
         var pio = ImGui.GetPlatformIO();
@@ -46,23 +38,17 @@ internal sealed class CanvasRenderer : IRenderer
         {
             var vp = pio.Viewports[vpidx];
             Rid vprid = Util.ConstructRid((ulong)vp.RendererUserData);
-
             RenderOne(vprid, vp.DrawData);
         }
     }
-
     private void RenderOne(Rid vprid, ImDrawDataPtr drawData)
     {
         ViewportData vd = _vpData[vprid];
         Rid parent = vd.RootCanvasItem;
-
         var window = (GodotImGuiWindow)GCHandle.FromIntPtr(drawData.OwnerViewport.PlatformHandle).Target;
-
         if (!_canvasItemPools.ContainsKey(parent))
             _canvasItemPools[parent] = new();
-
         var children = _canvasItemPools[parent];
-
         // allocate our CanvasItem pool as needed
         int neededNodes = 0;
         for (int i = 0; i < drawData.CmdListsCount; ++i)
@@ -75,7 +61,6 @@ internal sealed class CanvasRenderer : IRenderer
                     --neededNodes;
             }
         }
-
         while (children.Count < neededNodes)
         {
             Rid newChild = RenderingServer.CanvasItemCreate();
@@ -83,7 +68,6 @@ internal sealed class CanvasRenderer : IRenderer
             RenderingServer.CanvasItemSetDrawIndex(newChild, children.Count);
             children.Add(newChild);
         }
-
         // trim unused nodes
         while (children.Count > neededNodes)
         {
@@ -91,21 +75,16 @@ internal sealed class CanvasRenderer : IRenderer
             RenderingServer.FreeRid(children[idx]);
             children.RemoveAt(idx);
         }
-
         // render
         drawData.ScaleClipRects(ImGui.GetIO().DisplayFramebufferScale);
         int nodeN = 0;
-
         for (int n = 0; n < drawData.CmdListsCount; ++n)
         {
             ImDrawListPtr cmdList = drawData.CmdListsRange[n];
-
             int nVert = cmdList.VtxBuffer.Size;
-
             var vertices = new Vector2[nVert];
             var colors = new Color[nVert];
             var uvs = new Vector2[nVert];
-
             for (int i = 0; i < cmdList.VtxBuffer.Size; ++i)
             {
                 var v = cmdList.VtxBuffer[i];
@@ -122,23 +101,19 @@ internal sealed class CanvasRenderer : IRenderer
                 colors[i] = new(r, g, b, a);
                 uvs[i] = new(v.uv.X, v.uv.Y);
             }
-
             for (int cmdi = 0; cmdi < cmdList.CmdBuffer.Size; ++cmdi)
             {
                 ImDrawCmdPtr drawCmd = cmdList.CmdBuffer[cmdi];
-
                 if (drawCmd.ElemCount == 0)
                 {
                     continue;
                 }
-
                 var indices = new int[drawCmd.ElemCount];
                 int idxOffset = (int)drawCmd.IdxOffset;
                 for (int i = idxOffset, j = 0; i < idxOffset + drawCmd.ElemCount; ++i, ++j)
                 {
                     indices[j] = cmdList.IdxBuffer[i];
                 }
-
                 Vector2[] cmdvertices = vertices;
                 Color[] cmdcolors = colors;
                 Vector2[] cmduvs = uvs;
@@ -154,9 +129,7 @@ internal sealed class CanvasRenderer : IRenderer
                     Array.Copy(colors, drawCmd.VtxOffset, cmdcolors, 0, localSize);
                     Array.Copy(uvs, drawCmd.VtxOffset, cmduvs, 0, localSize);
                 }
-
                 Rid child = children[nodeN++];
-
                 Rid texrid = Util.ConstructRid((ulong)drawCmd.GetTexID());
                 RenderingServer.CanvasItemClear(child);
                 Transform2D xform = Transform2D.Identity;
@@ -172,12 +145,10 @@ internal sealed class CanvasRenderer : IRenderer
                     drawCmd.ClipRect.Z - drawCmd.ClipRect.X,
                     drawCmd.ClipRect.W - drawCmd.ClipRect.Y)
                 );
-
                 RenderingServer.CanvasItemAddTriangleArray(child, indices, cmdvertices, cmdcolors, cmduvs, null, null, texrid, -1);
             }
         }
     }
-
     public void CloseViewport(Rid vprid)
     {
         ViewportData vd = _vpData[vprid];
@@ -185,12 +156,10 @@ internal sealed class CanvasRenderer : IRenderer
         RenderingServer.FreeRid(vd.RootCanvasItem);
         RenderingServer.FreeRid(vd.Canvas);
     }
-
     public void OnHide()
     {
         ClearCanvasItems();
     }
-
     public void Shutdown()
     {
         ClearCanvasItems();
@@ -200,7 +169,6 @@ internal sealed class CanvasRenderer : IRenderer
             RenderingServer.FreeRid(vd.Canvas);
         }
     }
-
     private void ClearCanvasItems(Rid rootci)
     {
         foreach (Rid ci in _canvasItemPools[rootci])
@@ -208,7 +176,6 @@ internal sealed class CanvasRenderer : IRenderer
             RenderingServer.FreeRid(ci);
         }
     }
-
     private void ClearCanvasItems()
     {
         foreach (Rid parent in _canvasItemPools.Keys)

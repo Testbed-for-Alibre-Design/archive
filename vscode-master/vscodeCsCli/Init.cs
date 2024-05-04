@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing.Drawing2D;
-
 namespace ConsoleApp1
 {
     internal class Program

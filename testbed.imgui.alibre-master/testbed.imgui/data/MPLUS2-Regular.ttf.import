@@ -1,17 +1,12 @@
 [remap]
-
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bk0s2hduow46m"
 path="res://.godot/imported/MPLUS2-Regular.ttf-7fe86ccd65e167ffa0da418b024bf3c5.fontdata"
-
 [deps]
-
 source_file="res://data/MPLUS2-Regular.ttf"
 dest_files=["res://.godot/imported/MPLUS2-Regular.ttf-7fe86ccd65e167ffa0da418b024bf3c5.fontdata"]
-
 [params]
-
 Rendering=null
 antialiasing=1
 generate_mipmaps=false

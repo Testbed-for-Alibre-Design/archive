@@ -6,8 +6,3 @@ try:
     print("CodeTest worked!")
 except:
     print("Code did not work!")
-
-
-
-
-

@@ -6,7 +6,6 @@
   <Namespace>Microsoft.VisualBasic</Namespace>
   <Namespace>System.Windows.Forms</Namespace>
 </Query>
-
 Public Session As IADSession
 Public objADDesignSession As AlibreX.IADDesignSession
 Public objADDesignPlane As AlibreX.IADDesignPlane
@@ -41,54 +40,33 @@ Public Root As IADRoot
 Private Property Holebase As BindingSource
 Dim ID As Double
 Dim OD As Double
-
 Sub Main()
-	
 	Connection1()
-
 	'Root.Sessions.Count.Dump()
 	Root.Sessions.Item(0).Name.Dump("name")
 	'Root.Dump()
 	If Root.Sessions.Count <> 0 Then
-
-
 		For Each item As IADSession In Root.Sessions
-
-		
 			item.Name.Dump
 			'item.ConstituentFilePaths.Dump
-
 			For Each item2 As IADParameter In item.Parameters
 				item2.Name.Dump
 			Next
-
 			item.FilePath.Dump
-
 		Next
 	Else
 		Dim out = "0".dump
 	End If
 	'Session = Root.Sessions.Item(0)
-
 	'WriteLine(Root.Sessions.Count)
-
 	Hook = Nothing
-
 	Root = Nothing
-
 End Sub
-
 ' Define other methods and classes here
-
-
-
 Sub Connection1()
-
 	Hook = GetObject(, "AlibreX.AutomationHook")
 	Root = Hook.Root
-
 End Sub
-
 Sub Connection2()
 	Hook = New AlibreX.AutomationHook
 	Call Hook.Initialize("", "", "", True, 0)

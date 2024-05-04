@@ -24,9 +24,7 @@ Module Program
 		Hook = Nothing
 		Root = Nothing
 	End Sub
-
 	Sub printpoint(x, y, z)
 		Console.WriteLine(x & " , " & y & " , " & z)
 	End Sub
-
 End Module

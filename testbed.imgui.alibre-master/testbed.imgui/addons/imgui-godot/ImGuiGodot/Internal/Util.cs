@@ -2,13 +2,10 @@ using Godot;
 using System;
 using System.Reflection;
 using System.Reflection.Emit;
-
 namespace ImGuiGodot.Internal;
-
 internal static class Util
 {
     public static readonly Func<ulong, Rid> ConstructRid;
-
     static Util()
     {
         ConstructorInfo cinfo = typeof(Rid).GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, new[] { typeof(ulong) }) ??
@@ -20,7 +17,6 @@ internal static class Util
         il.Emit(OpCodes.Ret);
         ConstructRid = dm.CreateDelegate<Func<ulong, Rid>>();
     }
-
     public static Rid AddLayerSubViewport(Node parent)
     {
         Rid svp = RenderingServer.ViewportCreate();

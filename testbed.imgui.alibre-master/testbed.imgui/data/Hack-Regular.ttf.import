@@ -1,17 +1,12 @@
 [remap]
-
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://c2o4vx2jik43e"
 path="res://.godot/imported/Hack-Regular.ttf-3d6007156cf38336f0685ad871feaf05.fontdata"
-
 [deps]
-
 source_file="res://data/Hack-Regular.ttf"
 dest_files=["res://.godot/imported/Hack-Regular.ttf-3d6007156cf38336f0685ad871feaf05.fontdata"]
-
 [params]
-
 Rendering=null
 antialiasing=1
 generate_mipmaps=false

@@ -4,9 +4,6 @@ using System.Diagnostics;
 using AlibreAddOn;
 using AlibreX;
 using System.Windows.Forms;
-
-
-
 namespace BaseAddon
 {
     public class BaseAddon : IAlibreAddOn
@@ -34,10 +31,8 @@ namespace BaseAddon
         {
             switch (menuId)
             {
-
                 case MenuIdRoot: return true;
             }
-
             return false;
         }
         public Array SubMenuItems(int menuId)
@@ -46,17 +41,14 @@ namespace BaseAddon
             {
                 case MenuIdRoot: return _menuIdsRoot;
             }
-
             return null;
         }
         public string MenuItemText(int menuId)
         {
             switch (menuId)
             {
-
                 case MenuIdRoot: return "Base Addon";
             }
-
             return "";
         }
         public bool PopupMenu(int menuId)
@@ -66,7 +58,6 @@ namespace BaseAddon
         public ADDONMenuStates MenuItemState(int menuId, string sessionIdentifier)
         {
             var session = _alibreRoot.Sessions.Item(sessionIdentifier);
-
             switch (session)
             {
                 case IADDrawingSession:
@@ -74,25 +65,20 @@ namespace BaseAddon
                     {
                        case MenuIdRoot: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
-
                     break;
-
                 case IADAssemblySession:
                     switch (menuId)
                     {
                         case MenuIdRoot: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
-
                     break;
                 case IADPartSession:
                     switch (menuId)
                     {
                        case MenuIdRoot: return ADDONMenuStates.ADDON_MENU_ENABLED;
                     }
-
                     break;
             }
-
             return ADDONMenuStates.ADDON_MENU_ENABLED;
         }
         public string MenuItemToolTip(int menuId)
@@ -101,7 +87,6 @@ namespace BaseAddon
             {
                 case MenuIdUtils: return "BaseAddon";
             }
-
             return "";
         }
         public string MenuIcon(int menuId)
@@ -112,16 +97,13 @@ namespace BaseAddon
              }
             return string.Empty;
         }
-
         public bool HasPersistentDataToSave(string sessionIdentifier)
         {
             return false;
         }
-
         public IAlibreAddOnCommand InvokeCommand(int menuId, string sessionIdentifier)
         {
             var session = _alibreRoot.Sessions.Item(sessionIdentifier);
-
             switch (menuId)
             {
                 case MenuIdUtils:
@@ -129,7 +111,6 @@ namespace BaseAddon
                     return BaseAddonCmd(session);
                 }
             }
-
             return null;
         }
         private IAlibreAddOnCommand BaseAddonCmd(IADSession currentSession)
@@ -139,22 +120,16 @@ namespace BaseAddon
         }
         public void LoadData(IStream pCustomData, string sessionIdentifier)
         {
-           
         }
         public void SaveData(IStream pCustomData, string sessionIdentifier)
         {
-            
         }
         public void setIsAddOnLicensed(bool isLicensed)
         {
-           
         }
         public bool UseDedicatedRibbonTab()
         {
             return false;
         }
     }
-
-
-
 }

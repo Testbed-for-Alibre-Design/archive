@@ -3,16 +3,13 @@ using ImGuiGodot;
 using ImGuiNET;
 using System;
 using System.Diagnostics;
-
 namespace TestbedImgui;
-
 public partial class Init : Node
 {
 	private Window _window;
 	private static bool fontLoaded = false;
 	private ImFontPtr proggy;
 	private ColorRect background;
-
 	public override void _EnterTree()
 	{
 		if (!fontLoaded)
@@ -24,7 +21,6 @@ public partial class Init : Node
 			ImGuiGD.RebuildFontAtlas();
 			fontLoaded = true;
 		}
-
 		var io = ImGui.GetIO();
 		io.ConfigFlags |= ImGuiConfigFlags.NavEnableGamepad;
 		proggy = io.Fonts.Fonts[1];
@@ -37,10 +33,8 @@ public partial class Init : Node
 		ImGuiLayer.Connect(OnImGuiLayout);
 		_window = GetWindow();
 	}
-
 	public override void _Process(double delta)
 	{
-
 		ImGui.Begin("Alibre Design Tools WIP 1");
 		if (ImGui.Button("open"))
 		{
@@ -56,7 +50,6 @@ public partial class Init : Node
 		ImGui.Text(size.ToString());
 		ImGui.End();
 	}
-
 	private void OnImGuiLayout()
 	{
 		if (ImGui.Begin("Alibre Design Tools WIP 2"))
@@ -67,9 +60,7 @@ public partial class Init : Node
 			}
 		}
 		ImGui.End();
-
 	}
-
 	public static void AlibreToImGuiProcessing()
     {
         string filePath = @"J:\Testbed-For-Alibre-Design\0-for-github\STAGING\testbed.imgui.alibre\testbed.imgui.alibre\bin\Debug\testbed.imgui.alibre.exe";

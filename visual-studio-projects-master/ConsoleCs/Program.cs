@@ -1,7 +1,6 @@
 ﻿using AlibreX;
 using System;
 using System.Runtime.InteropServices;
-
 namespace ConsoleCs
 {
     internal class Program
@@ -10,7 +9,6 @@ namespace ConsoleCs
         public static IADPartSession objADPartSession;
         public static IAutomationHook Hook;
         public static IADRoot Root;
-
         public static void Main()
         {
             Hook = (IAutomationHook)Marshal.GetActiveObject("AlibreX.AutomationHook");
@@ -33,7 +31,6 @@ namespace ConsoleCs
             Hook = null;
             Root = null;
         }
-
         public static void Printpoint(double x, double y, double z)
         {
             Console.WriteLine(x + " , " + y + " , " + z);

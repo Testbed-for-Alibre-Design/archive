@@ -1,5 +1,4 @@
 [remap]
-
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d38mh5owb6l3o"
@@ -7,14 +6,10 @@ path="res://.godot/imported/logo.png-7cef59fe556a6252009fe8a93152d335.ctex"
 metadata={
 "vram_texture": false
 }
-
 [deps]
-
 source_file="res://src/logo.png"
 dest_files=["res://.godot/imported/logo.png-7cef59fe556a6252009fe8a93152d335.ctex"]
-
 [params]
-
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
